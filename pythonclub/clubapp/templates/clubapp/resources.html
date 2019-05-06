@@ -1,11 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2>{{ resource. }}</h2>
-<p>Resource Name: {{ resource.resourcename }}</p>
-<p>Resource Type: {{ resource.resourcetype }}</p>
-<p>URL: {{ resource.resourceURL }}</p>
-<p>Added by: {{ resource.user }}</p>
-<p>Date entered: {{ resource.entrydate }}</p>
-<p>Resource Description: {{ resource.resourcedescription }}</p>
+<h1>Resources</h1>
+<table class='table'>
+    <tr>
+        <th>Resource</th>
+        <th>Description</th>
+    </tr>
+{% for r in resources_list %}
+<tr>
+    <td><a href="{% url 'resourcedetail' id=r.id %}">{{ r.resourcename }}</a></td>
+    <td>{{ r.resourcedescription }}</td>
+</tr>
+{% endfor %}
 
+</table>
 {% endblock %}

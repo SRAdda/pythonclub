@@ -3,12 +3,12 @@
 <h1>Events</h1>
 <table class='table'>
     <tr>
-        <th>Name</th>
+        <th>Event</th>
         <th>Description</th>
     </tr>
 {% for e in events_list %}
 <tr>
-    <td><ahref="{% url "eventdetails' id=e.id %}">{{ e.eventtitle }}</a></td>
+    <td><a href="{% url 'eventdetails' id=e.id %}">{{ e.eventtitle }}</a></td>
     <td>{{ e.eventdescription }}</td>
 </tr>
 {% endfor %}
