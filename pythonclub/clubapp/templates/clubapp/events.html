@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>Meeting Titles</h1>
+<h1>Events</h1>
 <table class='table'>
     <tr>
         <th>Name</th>
         <th>Description</th>
     </tr>
-{% for t in title_list %}
+{% for e in events_list %}
 <tr>
-    <td>{{ t.meetingtitle }}</td>
-    <td>{{ t.location }}</td>
+    <td><ahref="{% url "eventdetails' id=e.id %}">{{ e.eventtitle }}</a></td>
+    <td>{{ e.eventdescription }}</td>
 </tr>
 {% endfor %}
 
