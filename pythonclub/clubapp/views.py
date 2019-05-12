@@ -1,29 +1,38 @@
 from django.shortcuts import render, get_object_or_404, get_list_or_404
 from .models import Meeting, MeetingMinutes, Resource, Event
+from django.http import HttpResponseNotModified
+from .forms import MeetingForm, MeetingMinutesForm, ResourceForm, EventForm
+from django.contrib.auth.decorators import login_required
+from django.urls import reverse_lazy
 
 # Create your views here.
 def index(request):
     return render(request, 'clubapp/index.html')
 
 def meetings(request):
-    meetings_list=Meeting.objects.all()
-    return render(request, 'clubapp/meetings.html' , {'meetings_list' : meetings_list})
+    meetings=Meeting.objects.all()
+    return render(request, 'clubapp/meetings.html' , {'meetings': meetings})
 
-def meetingdetails(request, id):
-    meeting=get_object_or_404(Meeting, pk=id)
-    return render(request, 'clubapp/meetingdetails.html', {'meeting' : meeting})
+def meetingminutes(request):
+    meetingminutes=MeetingMinutes.objects.all()
+    return render(request, 'clubapp/meetingminutes.html' , {'meetingminutes': meetingminutes})
+
+
+def meetingdetail(request, id):
+    meetingdetail=get_object_or_404(Meeting, pk=id)
+    return render(request, 'clubapp/meetingdetail.html', {'meeting' : meeting})
 
 def events(request):
     events_list=Event.objects.all()
     return render(request, 'clubapp/events.html', {'events_list': events_list})    
 
-def eventdetails(request, id):
+def eventdetail(request, id):
     event=get_object_or_404(Event, pk=id)
-    return render(request, 'clubapp/eventdetails.html', {'event' : event})
+    return render(request, 'clubapp/eventdetail.html', {'event' : event})
 
 def resources(request):
-    resources_list=Resource.objects.all()
-    return render(request, 'clubapp/resources.html', {'resources_list': resources_list})
+    resource_list=Resource.objects.all()
+    return render(request, 'clubapp/resources.html', {'resource_list': resources_list})
 
 def resourcedetail(request, id):
     resource=get_object_or_404(Resource, pk=id)

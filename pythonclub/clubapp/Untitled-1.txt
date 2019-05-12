@@ -1,0 +1,50 @@
+
+    def test_tablename(self):
+        self.assertEqual(str(Meeting._meta.db_table), 'clubapp_meeting')
+
+class EventTest(TestCase):
+    #set up one time sample data
+    def setup(self):
+        self.u=User.objects.create(username='myuser')
+        self.title=EventTitle.objects.create(titletitle='holiday')
+        self.event=Event.objects.create(eventtitle='gala')
+        event=Event(eventtitle='holiday', event=type, )
+        return event
+
+    def test_string(self):
+        event = self.setup()
+        self.assertEqual(str(self.event), self.event.eventname)
+
+    def test_type(self):
+        event=self.setup()
+        self.assertEqual(str(self.event.eventtype), 'gala')
+
+    def test_table(self):
+        self.assertEqual(str(Event._meta.db_table), 'event')
+
+class ResourceTest(TestCase):
+    def test_string(self):
+        resource=Resource(resourcename="Latest Resource")
+        self.assertEqual(str(resource), resource.resourcename)
+
+    def test_table(self):
+        self.assertEqual(str(Resource._meta.db_table), 'resource')
+
+class TestIndex(TestCase):
+    def test_view_url_accessible_by_name(self):
+        response = self.client.get(reverse('index'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_view_uses_correct_template(self):
+        response = self.client.get(reverse('index'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'clubapp/index.html')
+
+class MeetingMinutesTest(TestCase):
+    def test_view_url_accessible_by_name(self):
+        response = self.client.get(reverse('meetingminutes'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_number_of_meetingminutes(self):
+        MeetingMinutes=MeetingMinutes.objects.filter(meetingminutes=self.meetingminutes).count()
+        self.assertEqual(meetingminutes, 2)
