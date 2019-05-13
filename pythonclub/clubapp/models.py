@@ -13,9 +13,9 @@ class Meeting(models.Model):
     def __str__(self): 
         return self.meetingtitle
         
-        class Meta:
-            db_table='meeting'
-            verbose_name_plural='meetings'
+    class Meta:
+        db_table='meeting'
+        verbose_name_plural='meetings'
 
 
 class MeetingMinutes(models.Model):
