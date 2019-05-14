@@ -31,8 +31,8 @@ def eventdetail(request, id):
     return render(request, 'clubapp/eventdetail.html', {'event' : event})
 
 def resources(request):
-    resource_list=Resource.objects.all()
-    return render(request, 'clubapp/resources.html', {'resource_list': resources_list})
+    resources_list=Resource.objects.all()
+    return render(request, 'clubapp/resources.html', {'resources_list': resources_list})
 
 def resourcedetail(request, id):
     resource=get_object_or_404(Resource, pk=id)
