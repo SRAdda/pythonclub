@@ -37,3 +37,55 @@ def resources(request):
 def resourcedetail(request, id):
     resource=get_object_or_404(Resource, pk=id)
     return render(request, 'clubapp/resourcedetail.html', {'resource' : resource})
+
+def newMeeting(request):
+    form=MeetingForm
+    if request.method=='POST':
+        form=MeetingForm(request.POST)
+        if form.is_valid():
+            post=form.save(commit=True)
+            post.save()
+            form=MeetingForm()
+
+    else:
+        form=MeetingForm()
+    return render(request, 'clubapp/newmeeting.html', {'form': form})
+
+def newMeetingMinutes(request):
+    form=MeetingMinutesForm
+    if request.method=='POST':
+        form=MeetingMinutesForm(request.POST)
+        if form.is_valid():
+            post=form.save(commit=True)
+            post.save()
+            form=MeetingMinutesForm()
+
+    else:
+        form=MeetingMinutesForm()
+    return render(request, 'clubapp/newmeetingminutes.html', {'form': form})
+
+def newResource(request):
+    form=ResourceForm
+    if request.method=='POST':
+        form=ResourceForm(request.POST)
+        if form.is_valid():
+            post=form.save(commit=True)
+            post.save()
+            form=ResourceForm()
+
+    else:
+        form=ResourceForm()
+    return render(request, 'clubapp/newresource.html', {'form': form})
+
+def newEvent(request):
+    form=EventForm
+    if request.method=='POST':
+        form=EventForm(request.POST)
+        if form.is_valid():
+            post=form.save(commit=True)
+            post.save()
+            form=EventForm()
+
+    else:
+        form=EventForm()
+    return render(request, 'clubapp/newevent.html', {'form': form})

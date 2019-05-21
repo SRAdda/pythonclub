@@ -1,6 +1,7 @@
 from django import forms
 from .models import Meeting, MeetingMinutes, Resource, Event
 
+
 # Basic forms are already templated
 # Forms can be customized
 

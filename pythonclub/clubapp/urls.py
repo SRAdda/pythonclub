@@ -10,5 +10,8 @@ urlpatterns=[
     path('eventdetail/<int:id>', views.eventdetail, name='eventdetail'),
     path('resources/', views.resources, name='resources'),
     path('resourcedetail/<int:id>', views.resourcedetail, name='resourcedetail'),
-    
+    path('newMeeting', views.newMeeting, name='newmeeting'),
+    path('newMeetingMinutes', views.newMeetingMinutes, name='newmeetingminutes'),
+    path('newResource', views.newResource, name='newresource'),
+    path('newEvent', views.newEvent, name='newevent'),
 ]
