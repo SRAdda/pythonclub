@@ -14,21 +14,8 @@ class Meeting(models.Model):
         return self.meetingtitle
         
     class Meta:
-        db_table='meeting'
-        verbose_name_plural='meetings'
-
-
-class MeetingMinutes(models.Model):
-    meetingminutes=models.CharField(max_length=255)
-    meetingminutesdate=models.DateField(auto_now=True)
-    user=models.ForeignKey(User, on_delete=models.DO_NOTHING)
-    meetingminutes=models.TextField(null=True, blank=True)
-    
-    def __str__(self): 
-        return self.meetingminutes
-        
-    class Meta:
-        db_table='minutes'
+        db_table='clubapp_meeting'
+        verbose_name_plural='clubapp_meetings'
 
 class Resource(models.Model):
     resourcename=models.CharField(max_length=255)
@@ -48,8 +35,8 @@ class Resource(models.Model):
 class Event(models.Model):
     eventtitle=models.CharField(max_length=255)
     eventlocation=models.TextField()
-    eventdate=models.DateTimeField(auto_now=False,auto_now_add=False)
-    eventtime=models.DateTimeField(auto_now=False,auto_now_add=False)
+    eventdate=models.DateField()
+    eventtime=models.TimeField()
     eventdescription=models.TextField(null=True, blank=True)
     eventURL=models.URLField(null=True, blank=True)
     user=models.ForeignKey(User, on_delete=models.DO_NOTHING)
@@ -58,5 +45,5 @@ class Event(models.Model):
         return self.eventtitle
         
     class Meta:
-        db_table='event'
+        db_table='clubapp_event'
         verbose_name_plural='events'

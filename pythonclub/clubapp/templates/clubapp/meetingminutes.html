@@ -1,9 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2>{{ meetingminutes.meetingminutes }}</h2>
-<p>Meeting Location: {{ meeting.meetinglocation }}</p>
-<p>Added by: {{ meetingminutes.user }}</p>
-<p>Meeting Date: {{ meetingminutes.meetingminutesdate }}</p>
-<p>URL: {{ meetingminutes.meetingminutesURL }}</p>
+<h1>Meeting Minutes</h1>
+<table class='table'>
+    <tr>
+        <th>Resource</th>
+        <th>Description</th>
+    </tr>
+{% for m in minutes_list %}
+<tr>
+    <td><a href="{% url 'meetingminutes' id=m.id %}">{{ m.meetingminutes }}</a></td>
+    <td>{{ m.meetingminutes }}</td>
+</tr>
+{% endfor %}
 
+</table>
 {% endblock %}

@@ -1,6 +1,6 @@
 from django.test import TestCase
-from .models import Meeting, MeetingMinutes, Event, Resource
-from .views import index, meetings, meetingdetail, meetingminutes, events, eventdetail, resources, resourcedetail
+from .models import Meeting, Event, Resource
+from .views import index, meetings, meetingdetail, events, eventdetail, resources, resourcedetail
 from django.urls import reverse
 from django.contrib.auth.models import User
 from datetime import datetime
@@ -29,11 +29,6 @@ class EventTest(TestCase):
 
     def test_tablename(self):
         self.assertEqual(str(Event._meta.db_table), 'clubapp_event')
-
-class TestMeetingMinutes(TestCase):
-    def test_view_url_accessible_by_name(self):
-        response = self.client.get(reverse('meetingminutes'))
-        self.assertEqual(response.status_code, 200)
 
     def test_tablename(self):
         self.assertEqual(str(MeetingMinutes._meta.db_table), 'attendance')

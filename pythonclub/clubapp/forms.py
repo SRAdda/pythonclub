@@ -1,5 +1,5 @@
 from django import forms
-from .models import Meeting, MeetingMinutes, Resource, Event
+from .models import Meeting, Resource, Event
 
 
 # Basic forms are already templated
@@ -8,11 +8,6 @@ from .models import Meeting, MeetingMinutes, Resource, Event
 class MeetingForm(forms.ModelForm):
     class Meta:
         model=Meeting
-        fields='__all__'
-
-class MeetingMinutesForm(forms.ModelForm):
-    class Meta:
-        model=MeetingMinutes
         fields='__all__'
 
 class ResourceForm(forms.ModelForm):

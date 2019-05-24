@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, get_list_or_404
-from .models import Meeting, MeetingMinutes, Resource, Event
+from .models import Meeting, Resource, Event
 from django.http import HttpResponseNotModified
-from .forms import MeetingForm, MeetingMinutesForm, ResourceForm, EventForm
+from .forms import MeetingForm, ResourceForm, EventForm
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 
@@ -12,11 +12,6 @@ def index(request):
 def meetings(request):
     meetings=Meeting.objects.all()
     return render(request, 'clubapp/meetings.html' , {'meetings': meetings})
-
-def meetingminutes(request):
-    meetingminutes=MeetingMinutes.objects.all()
-    return render(request, 'clubapp/meetingminutes.html' , {'meetingminutes': meetingminutes})
-
 
 def meetingdetail(request, id):
     meetingdetail=get_object_or_404(Meeting, pk=id)
@@ -50,19 +45,6 @@ def newMeeting(request):
     else:
         form=MeetingForm()
     return render(request, 'clubapp/newmeeting.html', {'form': form})
-
-def newMeetingMinutes(request):
-    form=MeetingMinutesForm
-    if request.method=='POST':
-        form=MeetingMinutesForm(request.POST)
-        if form.is_valid():
-            post=form.save(commit=True)
-            post.save()
-            form=MeetingMinutesForm()
-
-    else:
-        form=MeetingMinutesForm()
-    return render(request, 'clubapp/newmeetingminutes.html', {'form': form})
 
 def newResource(request):
     form=ResourceForm
