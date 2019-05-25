@@ -71,3 +71,9 @@ def newEvent(request):
     else:
         form=EventForm()
     return render(request, 'clubapp/newevent.html', {'form': form})
+
+def loginmessage(request):
+    return render(request, 'clubapp/loginmessage.html')
+
+def logoutmessage(request):
+    return render(request, 'clubapp/logoutmessage.html')
